@@ -14,6 +14,6 @@
 <!-- 	<bean id="student" class="fzgg.Student"></bean> -->
 
 	<context:component-scan base-package="fzgg"></context:component-scan>
-	<mvc:annotation-driven></mvc:annotation-driven>
+<!-- 	<mvc:annotation-driven></mvc:annotation-driven> -->
 
 </beans>

@@ -15,8 +15,10 @@ public class StudentTest {
 	public void eatTest() throws Exception{
 		ApplicationContext ac= new ClassPathXmlApplicationContext("classpath:applicationContext-springmvc.xml");
 		Student st= (Student) ac.getBean("student");
+		st.setName("ss");
 		System.out.println(st.eat());
-		System.out.println(st.getSchool());
+		System.out.println(st.getInfo().getSchool());
+//		System.out.println(st.getSchool());
 	}
 	
 	
