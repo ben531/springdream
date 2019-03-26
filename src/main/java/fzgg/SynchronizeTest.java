@@ -2,6 +2,9 @@ package fzgg;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class SynchronizeTest {
 	public static void main(String[] args) {
@@ -18,19 +21,28 @@ public class SynchronizeTest {
 //		}.start();
 		
 		
-//		new Thread(()->{
-//			new SyncClzz().test();
-//		}).start();
+		new Thread(()->{
+			new SyncClzz().test();
+		}).start();
 		
 		
 //		ExecutorService singleThreadExecutor = Executors.newCachedThreadPool();
 		
+		// 阿里不推荐
+//		ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+//		singleThreadExecutor.execute(()->{
+//			new SyncClzz().test();
+//		});
+//		singleThreadExecutor.shutdown();
 		
-		ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+		// 阿里推荐
+//		ExecutorService threadPoolExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
+//				new LinkedBlockingQueue<Runnable>(1024), new ThreadPoolExecutor.AbortPolicy());
+//		threadPoolExecutor.execute(()->{
+//			new SyncClzz().test();
+//		});
+//		threadPoolExecutor.shutdown();
 		
-		singleThreadExecutor.execute(()->{
-			new SyncClzz().test();
-		});
 		for (int i = 0; i < 100; i++) {
 			System.out.println("Sync" + i);
 		}
