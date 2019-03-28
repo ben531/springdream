@@ -11,23 +11,22 @@
 	http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 	
-<!-- 	<bean id="student" class="fzgg.Student"></bean> -->
+	<context:component-scan base-package="aop"></context:component-scan>
 
-	<context:component-scan base-package="*"></context:component-scan>
-<!-- 	<mvc:annotation-driven></mvc:annotation-driven> -->
-
-
-	<bean id="threadPoolExecutor" class="java.util.concurrent.ThreadPoolExecutor">
-		<constructor-arg index="0" value="1"></constructor-arg>
-		<constructor-arg index="1" value="1"></constructor-arg>
-		<constructor-arg index="2" value="0"></constructor-arg>
-		<constructor-arg index="3" >
-			<value type="java.util.concurrent.TimeUnit">MILLISECONDS</value>
-		</constructor-arg>
-		<constructor-arg index="4" ref="linkedBlockingQueue"></constructor-arg>
-		<constructor-arg index="5" ref="abortPolicy"></constructor-arg>
+	<bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>aop.ITestService</value>
+			</list>
+		</property>
+		
+		<property name="interceptorNames">
+			<list>
+				<value>myMethodBeforeAdvice</value>
+			</list>
+		</property>
+		
+		<property name="target" ref="testServiceImpl"></property>
 	</bean>
-	<bean id="linkedBlockingQueue" class="java.util.concurrent.LinkedBlockingQueue"></bean>
-	<bean id="abortPolicy" class="java.util.concurrent.ThreadPoolExecutor.AbortPolicy"></bean>
 
 </beans>

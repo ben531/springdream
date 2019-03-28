@@ -2,6 +2,7 @@ package fzgg;
 
 public class SyncClzz  implements Runnable{
 
+	
 	@Override
 	public void run() {
 		for (int j = 0; j < 100; j++) {
