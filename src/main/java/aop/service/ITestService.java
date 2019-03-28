@@ -1,6 +1,4 @@
-package aop;
-
-import org.springframework.stereotype.Service;
+package aop.service;
 
 public interface ITestService {
 	void sayHi();

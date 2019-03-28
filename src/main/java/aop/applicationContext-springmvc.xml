@@ -10,23 +10,26 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
 	http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
-	
-	<context:component-scan base-package="aop"></context:component-scan>
 
+	<context:component-scan base-package="aop"></context:component-scan>
+	<!-- 构造代理对象 -->
 	<bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 注入目标接口 -->
 		<property name="proxyInterfaces">
 			<list>
-				<value>aop.ITestService</value>
+				<!-- <value>aop.service.ITestService</value> -->
+				<value>aop.service.ITestService2</value>
 			</list>
 		</property>
-		
+		<!-- 织入通知 -->
 		<property name="interceptorNames">
 			<list>
 				<value>myMethodBeforeAdvice</value>
+				<value>myAfterReturningAdvice</value>
 			</list>
 		</property>
-		
-		<property name="target" ref="testServiceImpl"></property>
+		<!-- 注入目标对象 -->
+		<property name="target" ref="testServiceImpl2"></property>
 	</bean>
 
 </beans>
