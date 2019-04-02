@@ -1,5 +1,6 @@
 package fzggtest;
 
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -64,5 +65,19 @@ public class StudentTest {
 			System.out.println("这是测试"+i);
 		}
 	
+	}
+	
+	
+	@Test
+	public void optionalTest(){
+		
+		Student s = new Student();
+		s.setName("sfa");
+//		s = null;
+		Optional<Student> test= Optional.ofNullable(s);
+		
+//		test.flatMap(Student::getName);
+		Optional<String> map = test.map(Student::getName);
+		System.out.println(map.get());
 	}
 }
