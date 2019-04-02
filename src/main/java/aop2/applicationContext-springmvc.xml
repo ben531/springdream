@@ -12,24 +12,6 @@
 	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
 	<context:component-scan base-package="aop2"></context:component-scan>
-	<!-- 构造代理对象 -->
-	<bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
-		<!-- 注入目标接口 -->
-		<property name="proxyInterfaces">
-			<list>
-				<!-- <value>aop.service.ITestService</value> -->
-				<value>aop.service.ITestService2</value>
-			</list>
-		</property>
-		<!-- 织入通知 -->
-		<property name="interceptorNames">
-			<list>
-				<value>myMethodBeforeAdvice</value>
-				<value>myAfterReturningAdvice</value>
-			</list>
-		</property>
-		<!-- 注入目标对象 -->
-		<property name="target" ref="testServiceImpl2"></property>
-	</bean>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 </beans>

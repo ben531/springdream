@@ -11,7 +11,7 @@ public class MyMethodBeforeAdvice implements MethodBeforeAdvice {
 	@Override
 	public void before(Method method, Object[] args, Object target) throws Throwable {
 		
-		System.out.print(target.getClass().getName() +"."+ method.getName() + "() begin, 入参为:");
+		System.out.print(target.getClass().getName() +"."+ method.getName() + "() begin, 鍏ュ弬涓�:");
 		for (Object object : args) {
 			System.out.print(object + " ");
 		}
