@@ -6,6 +6,13 @@
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>http://10.134.154.59:8081/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
+
 	<properties>
 		<spring.version>4.3.14.RELEASE</spring.version>
 	</properties>
@@ -43,11 +50,6 @@
 			<version>4.3.14.RELEASE</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sourceforge.cglib</groupId>
-			<artifactId>com.springsource.net.sf.cglib</artifactId>
-			<version>2.2.0</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
@@ -83,6 +85,11 @@
 			<groupId>org.apache.bval</groupId>
 			<artifactId>bval-jsr303</artifactId>
 			<version>0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
 		</dependency>
 	</dependencies>
 
