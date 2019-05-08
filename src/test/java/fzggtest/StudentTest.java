@@ -14,71 +14,71 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import fzgg.A;
+import fzgg.AbstractTest;
+import fzgg.B;
+import fzgg.IntegerTest;
 import fzgg.Student;
 import fzgg.SyncClzz;
 
 @Component
 public class StudentTest {
-	
-//	@Autowired
-//	@Qualifier("threadPoolExecutor")
-	@XmlElement(name="threadPoolExecutor")
+
+	// @Autowired
+	// @Qualifier("threadPoolExecutor")
+	@XmlElement(name = "threadPoolExecutor")
 	private ThreadPoolExecutor es;
-	
+
 	@SuppressWarnings("resource")
 	@Test
-	public void eatTest() throws Exception{
-		ApplicationContext ac= new ClassPathXmlApplicationContext("classpath:applicationContext-springmvc.xml");
-		Student st= (Student) ac.getBean("student");
+	public void eatTest() throws Exception {
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext-springmvc.xml");
+		Student st = (Student) ac.getBean("student");
 		st.setName("ss");
 		System.out.println(st.eat());
 		System.out.println(st.getInfo().getSchool());
-//		System.out.println(st.getSchool());
+		// System.out.println(st.getSchool());
 	}
-	
-	
+
 	@Test
-	public void stringBufferTest(){
-		StringBuffer sb= new StringBuffer();
-//		System.out.println(sb.toString());
+	public void stringBufferTest() {
+		StringBuffer sb = new StringBuffer();
+		// System.out.println(sb.toString());
 		String string = sb.toString();
 		Assert.assertNotNull(string);
-		
+
 		if (StringUtils.isBlank(string)) {
 			System.out.println("kong");
 		}
 	}
-	
+
 	@SuppressWarnings({ "resource", "unused" })
 	@Test
-	public void threadPoolExecutorTest(){
-		ApplicationContext ac= new ClassPathXmlApplicationContext("classpath:applicationContext-springmvc.xml");
-//		ExecutorService es = (ThreadPoolExecutor)ac.getBean("threadPoolExecutor");
-		es.execute(()->{
+	public void threadPoolExecutorTest() {
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext-springmvc.xml");
+		// ExecutorService es = (ThreadPoolExecutor)ac.getBean("threadPoolExecutor");
+		es.execute(() -> {
 			new SyncClzz().test();
 		});
-		
+
 		for (int i = 0; i < 100; i++) {
-			System.out.println("这是测试"+i);
+			System.out.println("这是测试" + i);
 		}
-	
+
 	}
-	
-	
+
 	@Test
-	public void optionalTest(){
-		
+	public void optionalTest() {
+
 		Student s = new Student();
 		s.setName("sfa");
-//		s = null;
-		Optional<Student> test= Optional.ofNullable(s);
-		
-//		test.flatMap(Student::getName);
+		// s = null;
+		Optional<Student> test = Optional.ofNullable(s);
+
+		// test.flatMap(Student::getName);
 		Optional<String> map = test.map(Student::getName);
 		System.out.println(map.get());
 	}
-	
-	
+
 	@Test
 	public void test3() {
 		HashSet<String> set = new HashSet<String>();
@@ -86,21 +86,22 @@ public class StudentTest {
 		boolean add2 = set.add("w");
 		System.out.println(set);
 	}
+
 	@Test
 	public void test4() {
 		HashSet<StringBuilder> set = new HashSet<StringBuilder>();
-		
+
 		StringBuilder sb1 = new StringBuilder("a");
 		StringBuilder sb2 = new StringBuilder("ab");
 		set.add(sb1);
 		set.add(sb2);
 		System.out.println(set);
-		
+
 		StringBuilder sb3 = sb1;
 		sb3.append("b");
 		System.out.println(set);
 	}
-	
+
 	@Test
 	public void test5() {
 		switch ("w") {
@@ -113,19 +114,49 @@ public class StudentTest {
 			break;
 		}
 	}
-	
+
 	@Test
 	public void test6() throws CloneNotSupportedException {
-//		String a = "a";
-//		String b = new String("a");
-//		System.out.println(a==b);
+		// String a = "a";
+		// String b = new String("a");
+		// System.out.println(a==b);
 		A a1 = new A();
 		a1.setA("a");
 		a1.setB("b");
-		
+
 		A a2 = new A();
-		
-		a2=(A)a1.clone();
+
+		a2 = (A) a1.clone();
 		System.out.println(a2);
+	}
+
+	@Test
+	public void test7() {
+		IntegerTest.test1();
+		new IntegerTest() {
+		}.test2();
+
+		String test1 = AbstractTest.test1();
+		System.out.println(test1);
+		String test2 = new AbstractTest() {
+		}.test2();
+		System.out.println(test2);
+	}
+
+	
+	@Test
+	public void test8() {
+		A a = new A ();
+		A b = new A ();
+		System.out.println(a==b);
+		System.out.println(a.equals(b));
+		System.out.println(a);
+		System.out.println(b);
+	}
+	@Test
+	public void test9() {
+		A a = new B();
+		String test1 = a.test1();
+		System.out.println(test1);
 	}
 }

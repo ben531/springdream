@@ -38,6 +38,30 @@ public class A implements Cloneable{
 		return super.clone();
 	}
 	
+	public String test1() {
+		System.out.println("test1");
+		return "test1";
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (obj==null) {
+			return false;
+		}
+		if (obj instanceof A) {
+			A objA = (A) obj;
+			if (objA.getA()==this.getA()) {
+				return true;
+			}
+		}
+		
+		
+		return super.equals(obj);
+	}
 	public static void main(String[] args) throws CloneNotSupportedException {
 		A a1 = new A();
 		a1.setA("a");
